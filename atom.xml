@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lhy-maker.github.io</id>
     <title>Gridea</title>
-    <updated>2021-05-29T14:03:16.622Z</updated>
+    <updated>2021-05-29T14:08:29.015Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lhy-maker.github.io"/>
     <link rel="self" href="https://lhy-maker.github.io/atom.xml"/>
@@ -10,6 +10,76 @@
     <logo>https://lhy-maker.github.io/images/avatar.png</logo>
     <icon>https://lhy-maker.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[ACWing]]></title>
+        <id>https://lhy-maker.github.io/post/acwing/</id>
+        <link href="https://lhy-maker.github.io/post/acwing/">
+        </link>
+        <updated>2021-05-29T14:05:31.000Z</updated>
+        <content type="html"><![CDATA[<p>#include&lt;bits/stdc++.h&gt;<br>
+using namespace std;<br>
+using LL = long long;<br>
+int main(){<br>
+cin.tie(nullptr)-&gt;sync_with_stdio(false);<br>
+int N, M, a, b, ma = 0, mb = 0;<br>
+for(cin &gt;&gt; N; N; N -= 1){<br>
+cin &gt;&gt; a;<br>
+ma = max(ma, a);<br>
+}<br>
+for(cin &gt;&gt; M; M; M -= 1){<br>
+cin &gt;&gt; b;<br>
+mb = max(mb, b);<br>
+}<br>
+cout &lt;&lt; ma &lt;&lt; &quot; &quot; &lt;&lt; mb;<br>
+return 0;<br>
+}</p>
+<p>#include&lt;bits/stdc++.h&gt;<br>
+using namespace std;<br>
+using LL = long long;<br>
+int main(){<br>
+cin.tie(nullptr)-&gt;sync_with_stdio(false);<br>
+int N, K;<br>
+cin &gt;&gt; N &gt;&gt; K;<br>
+vector<LL> v(N);<br>
+for(LL&amp; x : v) cin &gt;&gt; x;<br>
+sort(v.begin(), v.end(), greater<LL>());<br>
+LL L = 1, R = 2E9;<br>
+while(L &lt; R){<br>
+LL M = (L + R + 1) &gt;&gt; 1;<br>
+LL need = 0;<br>
+for(int i = 0; i &lt; (N + 1) / 2; i += 1) need += max(0LL, M - v[i]);<br>
+if(need &lt;= K) L = M;<br>
+else R = M - 1;<br>
+}<br>
+cout &lt;&lt; L;<br>
+return 0;<br>
+}</p>
+<p>😀🤡🤡🤡🤡🤡🤡#include&lt;bits/stdc++.h&gt;<br>
+using namespace std;<br>
+using LL = long long;<br>
+int main(){<br>
+cin.tie(nullptr)-&gt;sync_with_stdio(false);<br>
+int T;<br>
+for(cin &gt;&gt; T; T; T -= 1){<br>
+int N;<br>
+cin &gt;&gt; N;<br>
+vector<int> p(N + 1), ans(N + 1), vis(N + 1);<br>
+for(int i = 1; i &lt;= N; i += 1) cin &gt;&gt; p[i];<br>
+for(int i = 1; i &lt;= N; i += 1) if(not vis[i]){<br>
+vector<int> v;<br>
+for(int u = i; not vis[u]; u = p[u]){<br>
+v.push_back(u);<br>
+vis[u] = 1;<br>
+}<br>
+for(int x : v) ans[x] = v.size();<br>
+}<br>
+for(int i = 1; i &lt;= N; i += 1) cout &lt;&lt; ans[i] &lt;&lt; &quot; &quot;;<br>
+cout &lt;&lt; &quot;\n&quot;;<br>
+}<br>
+return 0;<br>
+}</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello world!]]></title>
         <id>https://lhy-maker.github.io/post/hello-world/</id>

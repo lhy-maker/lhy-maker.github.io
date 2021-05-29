@@ -2,17 +2,20 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello world! | Gridea</title>
+<title>ACWing | Gridea</title>
 <link rel="shortcut icon" href="https://lhy-maker.github.io/favicon.ico?v=1622297274715">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lhy-maker.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Hello world! | Gridea - Atom Feed" href="https://lhy-maker.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="ACWing | Gridea - Atom Feed" href="https://lhy-maker.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="你好，世界！  ------2021/5/29
-" />
+    <meta name="description" content="#include&lt;bits/stdc++.h&gt;
+using namespace std;
+using LL = long long;
+int main(){
+cin.tie(nullptr)-&gt;sync_with_stdi..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -75,21 +78,82 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Hello world!
+              ACWing
             </h2>
             <div class="post-info">
               <span>
                 2021-05-29
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>你好，世界！  ------2021/5/29</p>
+                <p>#include&lt;bits/stdc++.h&gt;<br>
+using namespace std;<br>
+using LL = long long;<br>
+int main(){<br>
+cin.tie(nullptr)-&gt;sync_with_stdio(false);<br>
+int N, M, a, b, ma = 0, mb = 0;<br>
+for(cin &gt;&gt; N; N; N -= 1){<br>
+cin &gt;&gt; a;<br>
+ma = max(ma, a);<br>
+}<br>
+for(cin &gt;&gt; M; M; M -= 1){<br>
+cin &gt;&gt; b;<br>
+mb = max(mb, b);<br>
+}<br>
+cout &lt;&lt; ma &lt;&lt; &quot; &quot; &lt;&lt; mb;<br>
+return 0;<br>
+}</p>
+<p>#include&lt;bits/stdc++.h&gt;<br>
+using namespace std;<br>
+using LL = long long;<br>
+int main(){<br>
+cin.tie(nullptr)-&gt;sync_with_stdio(false);<br>
+int N, K;<br>
+cin &gt;&gt; N &gt;&gt; K;<br>
+vector<LL> v(N);<br>
+for(LL&amp; x : v) cin &gt;&gt; x;<br>
+sort(v.begin(), v.end(), greater<LL>());<br>
+LL L = 1, R = 2E9;<br>
+while(L &lt; R){<br>
+LL M = (L + R + 1) &gt;&gt; 1;<br>
+LL need = 0;<br>
+for(int i = 0; i &lt; (N + 1) / 2; i += 1) need += max(0LL, M - v[i]);<br>
+if(need &lt;= K) L = M;<br>
+else R = M - 1;<br>
+}<br>
+cout &lt;&lt; L;<br>
+return 0;<br>
+}</p>
+<p>😀🤡🤡🤡🤡🤡🤡#include&lt;bits/stdc++.h&gt;<br>
+using namespace std;<br>
+using LL = long long;<br>
+int main(){<br>
+cin.tie(nullptr)-&gt;sync_with_stdio(false);<br>
+int T;<br>
+for(cin &gt;&gt; T; T; T -= 1){<br>
+int N;<br>
+cin &gt;&gt; N;<br>
+vector<int> p(N + 1), ans(N + 1), vis(N + 1);<br>
+for(int i = 1; i &lt;= N; i += 1) cin &gt;&gt; p[i];<br>
+for(int i = 1; i &lt;= N; i += 1) if(not vis[i]){<br>
+vector<int> v;<br>
+for(int u = i; not vis[u]; u = p[u]){<br>
+v.push_back(u);<br>
+vis[u] = 1;<br>
+}<br>
+for(int x : v) ans[x] = v.size();<br>
+}<br>
+for(int i = 1; i &lt;= N; i += 1) cout &lt;&lt; ans[i] &lt;&lt; &quot; &quot;;<br>
+cout &lt;&lt; &quot;\n&quot;;<br>
+}<br>
+return 0;<br>
+}</p>
 
               </div>
               <div class="toc-container">
@@ -102,9 +166,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://lhy-maker.github.io/post/hello-gridea/">
+            <a href="https://lhy-maker.github.io/post/hello-world/">
               <h3 class="post-title">
-                Hello Gridea
+                Hello world!
               </h3>
             </a>
           </div>
