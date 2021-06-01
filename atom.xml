@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://lhy-maker.github.io</id>
     <title>Gridea</title>
-    <updated>2021-06-01T09:21:26.757Z</updated>
+    <updated>2021-06-01T09:44:05.152Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://lhy-maker.github.io"/>
     <link rel="self" href="https://lhy-maker.github.io/atom.xml"/>
@@ -10,6 +10,85 @@
     <logo>https://lhy-maker.github.io/images/avatar.png</logo>
     <icon>https://lhy-maker.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Acwing 通关打怪之路]]></title>
+        <id>https://lhy-maker.github.io/post/acwing-tong-guan-da-guai-zhi-lu/</id>
+        <link href="https://lhy-maker.github.io/post/acwing-tong-guan-da-guai-zhi-lu/">
+        </link>
+        <updated>2021-06-01T09:22:04.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="1背包问题分为01背包问题完全背包问题和多重背包问题">1，背包问题：分为01背包问题，完全背包问题和多重背包问题。</h1>
+<p>基础题型讲解： 01 背包问题<br>
+有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。<br>
+第 i 件物品的体积是 vi，价值是 wi。<br>
+求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。<br>
+输出最大价值。<br>
+输入格式<br>
+第一行两个整数，N，V，用空格隔开，分别表示物品数量和背包容积。<br>
+接下来有 N 行，每行两个整数 vi,wi，用空格隔开，分别表示第 i 件物品的体积和价值。<br>
+输出格式<br>
+输出一个整数，表示最大价值。<br>
+数据范围<br>
+0&lt;N,V≤1000<br>
+0&lt;vi,wi≤1000<br>
+输入样例<br>
+4 5<br>
+1 2<br>
+2 4<br>
+3 4<br>
+4 5<br>
+输出样例：<br>
+8</p>
+<p>题解：用F[i][j]表示前i个物体，在背包容积为 j 的情况下，所能达到的最大价值。<br>
+此题属于动态规划的范畴，可以采用集合概念来分析；<br>
+DP分为状态表示(F[i][j])和状态计算(本质是集合的划分)，状态的表示F[i][j]分为集合和属性两大部分，集合部分主要是对所有选法和选法条件即数目限制和体积限制，而属性部分包括max,min,num等多种属性。<br>
+对于本题而言：状态表示部分；F[i][j]表示前i个物体，在背包容积为 j 的情况下，所能达到的最大价值。<br>
+状态计算部分：F[i][j]=F[i-1][j];//表示不选第i个物体且满足题目要求的最大值；<br>
+F[i][j]=max(F[i][j],F[i-1][j-v]+w); //表示选第i个物体且满足题目要求的最大值；</p>
+<h1 id="示例代码未优化代码">示例代码（未优化代码🚩）：</h1>
+<p>#include<iostream><br>
+#include<algorithm><br>
+#include&lt;stdio.h&gt;<br>
+const int N=1010;<br>
+int V[N],W[N],F[N][N];<br>
+using namespace std;<br>
+int main(){<br>
+int m,n;<br>
+scanf(&quot;%d %d&quot;,&amp;m,&amp;n);<br>
+for(int i=1;i&lt;=m;i++)scanf(&quot;%d %d&quot;,&amp;V[i],&amp;W[i]);<br>
+for(int i=1;i&lt;=m;i++){<br>
+for(int j=0;j&lt;=n;j++){<br>
+F[i][j]=F[i-1][j];<br>
+if(j&gt;=V[i]){<br>
+F[i][j]=max(F[i][j],F[i-1][j-V[i]]+W[i]);<br>
+}<br>
+}<br>
+}<br>
+printf(&quot;%d\n&quot;,F[m][n]);<br>
+return 0;<br>
+}</p>
+<p>优化代码思路：F[i][j]表示前i个物体，在背包容积为 j 的情况下，所能达到的最大价值。<br>
+而二维数组F[i][j]可以用一维数组F[j]表示,将i作为隐形的坐标：</p>
+<h1 id="示例代码优化后代码️">示例代码：(优化后代码🏳️‍🌈)</h1>
+<p>#include<iostream><br>
+#include<algorithm><br>
+#include&lt;stdio.h&gt;<br>
+const int N=1010;<br>
+int V[N],W[N],F[N];<br>
+using namespace std;<br>
+int main(){<br>
+int m,n;<br>
+scanf(&quot;%d %d&quot;,&amp;m,&amp;n);<br>
+for(int i=1;i&lt;=m;i++)scanf(&quot;%d %d&quot;,&amp;V[i],&amp;W[i]);<br>
+for(int i=1;i&lt;=m;i++){<br>
+for(int j=n;j&gt;=V[i];j--){<br>
+F[j]=max(F[j],F[j-V[i]]+W[i]);<br>
+}<br>
+}<br>
+printf(&quot;%d\n&quot;,F[n]);<br>
+return 0;<br>
+}</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Acwing 周赛 NO1]]></title>
         <id>https://lhy-maker.github.io/post/acwing-zhou-sai-no1/</id>

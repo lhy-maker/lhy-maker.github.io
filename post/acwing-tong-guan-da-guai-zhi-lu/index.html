@@ -1,0 +1,244 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Acwing 通关打怪之路 | Gridea</title>
+<link rel="shortcut icon" href="https://lhy-maker.github.io/favicon.ico?v=1622540640311">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://lhy-maker.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Acwing 通关打怪之路 | Gridea - Atom Feed" href="https://lhy-maker.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1，背包问题：分为01背包问题，完全背包问题和多重背包问题。
+基础题型讲解： 01 背包问题
+有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。
+第 i 件物品的体积是 vi，价值是 wi。
+求解将哪些物品装入背包，可使这些物品..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://lhy-maker.github.io">
+  <img class="avatar" src="https://lhy-maker.github.io/images/avatar.png?v=1622540640311" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    欢迎来到我的世界，请遵循协议！
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Acwing 通关打怪之路
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-06-01
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="1背包问题分为01背包问题完全背包问题和多重背包问题">1，背包问题：分为01背包问题，完全背包问题和多重背包问题。</h1>
+<p>基础题型讲解： 01 背包问题<br>
+有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。<br>
+第 i 件物品的体积是 vi，价值是 wi。<br>
+求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。<br>
+输出最大价值。<br>
+输入格式<br>
+第一行两个整数，N，V，用空格隔开，分别表示物品数量和背包容积。<br>
+接下来有 N 行，每行两个整数 vi,wi，用空格隔开，分别表示第 i 件物品的体积和价值。<br>
+输出格式<br>
+输出一个整数，表示最大价值。<br>
+数据范围<br>
+0&lt;N,V≤1000<br>
+0&lt;vi,wi≤1000<br>
+输入样例<br>
+4 5<br>
+1 2<br>
+2 4<br>
+3 4<br>
+4 5<br>
+输出样例：<br>
+8</p>
+<p>题解：用F[i][j]表示前i个物体，在背包容积为 j 的情况下，所能达到的最大价值。<br>
+此题属于动态规划的范畴，可以采用集合概念来分析；<br>
+DP分为状态表示(F[i][j])和状态计算(本质是集合的划分)，状态的表示F[i][j]分为集合和属性两大部分，集合部分主要是对所有选法和选法条件即数目限制和体积限制，而属性部分包括max,min,num等多种属性。<br>
+对于本题而言：状态表示部分；F[i][j]表示前i个物体，在背包容积为 j 的情况下，所能达到的最大价值。<br>
+状态计算部分：F[i][j]=F[i-1][j];//表示不选第i个物体且满足题目要求的最大值；<br>
+F[i][j]=max(F[i][j],F[i-1][j-v]+w); //表示选第i个物体且满足题目要求的最大值；</p>
+<h1 id="示例代码未优化代码">示例代码（未优化代码🚩）：</h1>
+<p>#include<iostream><br>
+#include<algorithm><br>
+#include&lt;stdio.h&gt;<br>
+const int N=1010;<br>
+int V[N],W[N],F[N][N];<br>
+using namespace std;<br>
+int main(){<br>
+int m,n;<br>
+scanf(&quot;%d %d&quot;,&amp;m,&amp;n);<br>
+for(int i=1;i&lt;=m;i++)scanf(&quot;%d %d&quot;,&amp;V[i],&amp;W[i]);<br>
+for(int i=1;i&lt;=m;i++){<br>
+for(int j=0;j&lt;=n;j++){<br>
+F[i][j]=F[i-1][j];<br>
+if(j&gt;=V[i]){<br>
+F[i][j]=max(F[i][j],F[i-1][j-V[i]]+W[i]);<br>
+}<br>
+}<br>
+}<br>
+printf(&quot;%d\n&quot;,F[m][n]);<br>
+return 0;<br>
+}</p>
+<p>优化代码思路：F[i][j]表示前i个物体，在背包容积为 j 的情况下，所能达到的最大价值。<br>
+而二维数组F[i][j]可以用一维数组F[j]表示,将i作为隐形的坐标：</p>
+<h1 id="示例代码优化后代码️">示例代码：(优化后代码🏳️‍🌈)</h1>
+<p>#include<iostream><br>
+#include<algorithm><br>
+#include&lt;stdio.h&gt;<br>
+const int N=1010;<br>
+int V[N],W[N],F[N];<br>
+using namespace std;<br>
+int main(){<br>
+int m,n;<br>
+scanf(&quot;%d %d&quot;,&amp;m,&amp;n);<br>
+for(int i=1;i&lt;=m;i++)scanf(&quot;%d %d&quot;,&amp;V[i],&amp;W[i]);<br>
+for(int i=1;i&lt;=m;i++){<br>
+for(int j=n;j&gt;=V[i];j--){<br>
+F[j]=max(F[j],F[j-V[i]]+W[i]);<br>
+}<br>
+}<br>
+printf(&quot;%d\n&quot;,F[n]);<br>
+return 0;<br>
+}</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E5%88%86%E4%B8%BA01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E5%92%8C%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98">1，背包问题：分为01背包问题，完全背包问题和多重背包问题。</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E6%9C%AA%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81">示例代码（未优化代码🚩）：</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E5%90%8E%E4%BB%A3%E7%A0%81%EF%B8%8F">示例代码：(优化后代码🏳️‍🌈)</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://lhy-maker.github.io/post/acwing-zhou-sai-no1/">
+              <h3 class="post-title">
+                Acwing 周赛 NO1
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://lhy-maker.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
