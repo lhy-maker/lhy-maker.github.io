@@ -2,17 +2,22 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello world! | Gridea</title>
+<title>Acwing 周赛 NO1 | Gridea</title>
 <link rel="shortcut icon" href="https://lhy-maker.github.io/favicon.ico?v=1622349423518">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lhy-maker.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Hello world! | Gridea - Atom Feed" href="https://lhy-maker.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Acwing 周赛 NO1 | Gridea - Atom Feed" href="https://lhy-maker.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="你好，世界！  ------2021/5/29
-" />
+    <meta name="description" content="Acwing 3578 最大中位数
+#include 
+#include 
+#include 
+using namespace std;
+typedef long long LL；//由于数据范围所以采用LL;
+const int N = ..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -75,21 +80,164 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Hello world!
+              Acwing 周赛 NO1
             </h2>
             <div class="post-info">
               <span>
-                2021-05-29
+                2021-05-30
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>你好，世界！  ------2021/5/29</p>
+                <p>Acwing 3578 最大中位数<br>
+#include <iostream><br>
+#include <cstring><br>
+#include <algorithm></p>
+<p>using namespace std;</p>
+<p>typedef long long LL；//由于数据范围所以采用LL;</p>
+<p>const int N = 200010;</p>
+<p>int n, m;<br>
+int w[N];</p>
+<p>bool check(int mid)<br>
+{<br>
+LL res = 0;<br>
+for (int i = n / 2; i &lt; n; i ++ )<br>
+if (w[i] &lt; mid)<br>
+res += mid - w[i];<br>
+return res &lt;= m;<br>
+}</p>
+<p>int main()<br>
+{<br>
+scanf(&quot;%d%d&quot;, &amp;n, &amp;m);<br>
+for (int i = 0; i &lt; n; i ++ ) scanf(&quot;%d&quot;, &amp;w[i]);<br>
+sort(w, w + n);//将所有数据排序<br>
+int l = 0, r = 2e9;<br>
+//二分排序<br>
+while (l &lt; r)<br>
+{<br>
+int mid = (LL)l + r + 1 &gt;&gt; 1;<br>
+if (check(mid)) l = mid;<br>
+else r = mid - 1;<br>
+}<br>
+printf(&quot;%d\n&quot;, r);<br>
+return 0;<br>
+}</p>
+<p>题解1：<br>
+bool check(int mid)<br>
+{<br>
+LL res = 0;<br>
+for (int i = n / 2; i &lt; n; i ++ )<br>
+if (w[i] &lt; mid)<br>
+res += mid - w[i];<br>
+printf(&quot;%lld\n&quot;,res);<br>
+return res &lt;= m;<br>
+}<br>
+从max(mid)=1e9开始遍历大于所有mid的数组部分，计算res,如果res的值小于操作总数k的值，即表明在操作数小于k的情况下最大的mid值。<br>
+3999999984<br>
+1999999984<br>
+999999984<br>
+499999984<br>
+249999984<br>
+124999984<br>
+62499984<br>
+31249984<br>
+15624984<br>
+7812484<br>
+3906232<br>
+1953108<br>
+976544<br>
+488264<br>
+244124<br>
+122052<br>
+61016<br>
+30500<br>
+15240<br>
+7612<br>
+3796<br>
+1888<br>
+936<br>
+460<br>
+220<br>
+100<br>
+40<br>
+12<br>
+0<br>
+4<br>
+8</p>
+<!-- more -->
+<p>Acwing 3579 数字移动</p>
+<p>常规想法：导致Time Limit Exceeded<br>
+#include<iostream><br>
+#include&lt;stdio.h&gt;<br>
+#include<algorithm></p>
+<p>const int N=20000010;</p>
+<p>long long int W[N];<br>
+long long int m;<br>
+using namespace std;</p>
+<p>int search(int n,int e,int u){//n代表第i个元素<br>
+if(n==W[e])return u;<br>
+return search(n,W[e],u+1);</p>
+<p>}<br>
+int main(){<br>
+int T;<br>
+scanf(&quot;%d&quot;,&amp;T);<br>
+while(T--){<br>
+scanf(&quot;%lld&quot;,&amp;m);<br>
+for(int i=1;i&lt;=m;i++)scanf(&quot;%lld&quot;,&amp;W[i]);</p>
+<pre><code>    for(int i=1;i&lt;=m;i++){
+      
+        printf(&quot;%d &quot;,search(i,i,1));
+    }
+    printf(&quot;\n&quot;);
+}
+return 0;
+</code></pre>
+<p>}<br>
+优化算法，并查集：<br>
+#include <iostream><br>
+#include <cstring><br>
+#include <algorithm></p>
+<p>using namespace std;</p>
+<p>const int N = 200010;</p>
+<p>int n;<br>
+int p[N], s[N];</p>
+<p>int find(int x)  // 并查集<br>
+{<br>
+if (p[x] != x) p[x] = find(p[x]);<br>
+return p[x];<br>
+}</p>
+<p>int main()<br>
+{<br>
+int T;<br>
+scanf(&quot;%d&quot;, &amp;T);</p>
+<pre><code>while (T -- )
+{
+    scanf(&quot;%d&quot;, &amp;n);
+    for (int i = 1; i &lt;= n; i ++ ) p[i] = i, s[i] = 1;
+    for (int i = 1; i &lt;= n; i ++ )
+    {
+        int j;
+        scanf(&quot;%d&quot;, &amp;j);
+        if (find(i) != find(j))
+        {
+            s[find(j)] += s[find(i)];
+            p[find(i)] = find(j);
+        }
+    }
+    for (int i = 1; i &lt;= n; i ++ )
+        printf(&quot;%d &quot;, s[find(i)]);
+    puts(&quot;&quot;);
+}
+
+return 0;
+</code></pre>
+<p>}<br>
+并查集知识点补充：</p>
 
               </div>
               <div class="toc-container">
@@ -102,9 +250,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://lhy-maker.github.io/post/hello-gridea/">
+            <a href="https://lhy-maker.github.io/post/acwing/">
               <h3 class="post-title">
-                Hello Gridea
+                ACWing
               </h3>
             </a>
           </div>
